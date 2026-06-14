@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mycco Herbs — Premium Ayurvedic Wellness</title>
+<meta name="google-site-verification" content="F3OzgdTWp1Uzz_ekBxDDjEVGxdECss-sEEbcfczTlyM" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#1a3d0a;
+  --green-light:#2a5c10;
+  --cream:#faf7f0;
+  --cream-dark:#f0ebe0;
+  --gold:#e8a835;
+  --gold-light:#f2c060;
+  --text:#1a1a1a;
+  --text-light:#555;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* NAVBAR */
+nav{position:sticky;top:0;z-index:100;background:var(--green);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px;box-shadow:0 2px 20px rgba(0,0,0,0.3)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--gold);letter-spacing:1px;text-decoration:none}
+.logo span{color:var(--cream);font-weight:400}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;opacity:0.85;transition:opacity 0.2s}
+.nav-links a:hover{opacity:1;color:var(--gold)}
+.cart-btn{background:var(--gold);color:var(--green);border:none;padding:8px 20px;border-radius:30px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background 0.2s}
+.cart-btn:hover{background:var(--gold-light)}
+.cart-count{background:var(--green);color:var(--gold);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--cream)}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:90vh;background:var(--green)}
+.hero-left{padding:8% 5% 8% 8%;display:flex;flex-direction:column;justify-content:center}
+.hero-tag{display:inline-block;color:var(--gold);font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:1.5rem;border:1px solid var(--gold);padding:5px 15px;border-radius:20px;width:fit-content}
+.hero-left h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4vw,4rem);color:var(--cream);line-height:1.1;margin-bottom:1rem}
+.hero-left h1 em{color:var(--gold);font-style:italic}
+.hero-left p{color:rgba(250,247,240,0.75);font-size:1rem;line-height:1.7;margin-bottom:2.5rem;max-width:420px}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--green);padding:14px 32px;border-radius:40px;font-weight:600;font-size:0.9rem;border:none;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--cream);padding:14px 32px;border-radius:40px;font-weight:500;font-size:0.9rem;border:1px solid rgba(250,247,240,0.4);cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-right{background:rgba(0,0,0,0.15);padding:6% 6% 6% 4%;display:flex;flex-direction:column;justify-content:center;border-left:1px solid rgba(232,168,53,0.2)}
+.hero-right h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold);margin-bottom:1.5rem;letter-spacing:1px}
+.bestseller-list{display:flex;flex-direction:column;gap:1rem}
+.bs-item{display:flex;align-items:center;gap:1rem;background:rgba(250,247,240,0.05);border:1px solid rgba(232,168,53,0.2);border-radius:12px;padding:14px 16px;transition:all 0.2s;cursor:pointer}
+.bs-item:hover{background:rgba(232,168,53,0.1);border-color:var(--gold)}
+.bs-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--gold);opacity:0.5;font-weight:700;width:30px}
+.bs-info{flex:1}
+.bs-info h4{color:var(--cream);font-size:0.9rem;font-weight:500;margin-bottom:2px}
+.bs-info span{color:var(--gold);font-size:0.85rem;font-weight:600}
+.bs-add{background:var(--gold);color:var(--green);border:none;border-radius:20px;padding:6px 14px;font-size:0.75rem;font-weight:700;cursor:pointer;transition:background 0.2s}
+.bs-add:hover{background:var(--gold-light)}
+
+/* SECTIONS */
+section{padding:6rem 8%}
+.section-tag{display:inline-block;color:var(--gold);font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.8rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3vw,2.8rem);color:var(--green);line-height:1.2;margin-bottom:1rem}
+.section-sub{color:var(--text-light);font-size:0.95rem;line-height:1.7;max-width:520px}
+
+/* PRODUCTS */
+.products{background:var(--cream)}
+.products-header{text-align:center;margin-bottom:3rem}
+.products-header .section-sub{margin:0 auto}
+.filter-tabs{display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.tab{background:transparent;border:1px solid var(--green);color:var(--green);padding:8px 20px;border-radius:30px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;cursor:pointer;transition:all 0.2s;letter-spacing:0.5px}
+.tab:hover,.tab.active{background:var(--green);color:var(--cream)}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem}
+.product-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 15px rgba(26,61,10,0.08);transition:all 0.3s;animation:fadeIn 0.4s ease}
+.product-card:hover{transform:translateY(-5px);box-shadow:0 8px 30px rgba(26,61,10,0.15)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.product-img{height:180px;background:linear-gradient(135deg,var(--cream-dark),#e8e0d0);display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
+.badge{position:absolute;top:12px;right:12px;padding:4px 10px;border-radius:12px;font-size:0.7rem;font-weight:700;letter-spacing:0.5px}
+.badge.bestseller{background:var(--gold);color:var(--green)}
+.badge.new{background:var(--green);color:var(--gold)}
+.product-body{padding:1.2rem}
+.product-cat{font-size:0.7rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:0.4rem}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--green);margin-bottom:0.8rem;line-height:1.3}
+.product-footer{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-size:1.1rem;font-weight:700;color:var(--green)}
+.add-btn{background:var(--green);color:var(--cream);border:none;border-radius:25px;padding:8px 18px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+.add-btn:hover{background:var(--green-light);transform:scale(1.05)}
+
+/* INGREDIENTS */
+.ingredients{background:var(--green)}
+.ingredients .section-title{color:var(--cream)}
+.ingredients .section-sub{color:rgba(250,247,240,0.7)}
+.ing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;margin-top:3rem}
+.ing-card{background:rgba(250,247,240,0.06);border:1px solid rgba(232,168,53,0.25);border-radius:16px;padding:2rem 1.5rem;text-align:center;transition:all 0.3s}
+.ing-card:hover{background:rgba(232,168,53,0.1);border-color:var(--gold);transform:translateY(-4px)}
+.ing-icon{font-size:2.5rem;margin-bottom:1rem}
+.ing-card h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold);margin-bottom:0.5rem}
+.ing-card p{color:rgba(250,247,240,0.65);font-size:0.82rem;line-height:1.6}
+.ing-origin{display:inline-block;margin-top:0.8rem;font-size:0.7rem;color:var(--gold);border:1px solid rgba(232,168,53,0.4);padding:3px 10px;border-radius:10px}
+
+/* WHY MYCCO */
+.why{background:var(--cream-dark)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem;margin-top:3rem}
+.why-card{background:#fff;border-radius:16px;padding:2rem;text-align:center;box-shadow:0 2px 15px rgba(26,61,10,0.06);transition:all 0.3s;border-bottom:3px solid transparent}
+.why-card:hover{transform:translateY(-5px);border-bottom-color:var(--gold);box-shadow:0 8px 25px rgba(26,61,10,0.12)}
+.why-icon{font-size:2.5rem;margin-bottom:1rem}
+.why-card h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--green);margin-bottom:0.5rem}
+.why-card p{color:var(--text-light);font-size:0.85rem;line-height:1.6}
+
+/* TESTIMONIALS */
+.testimonials{background:var(--cream);text-align:center}
+.testimonials .section-sub{margin:0 auto}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
+.testi-card{background:#fff;border-radius:16px;padding:2rem;box-shadow:0 2px 15px rgba(26,61,10,0.07);text-align:left;transition:all 0.3s}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(26,61,10,0.12)}
+.stars{color:var(--gold);font-size:1rem;margin-bottom:1rem;letter-spacing:2px}
+.testi-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text);line-height:1.6;margin-bottom:1.2rem;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:0.8rem}
+.testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-size:0.9rem}
+.testi-name{font-weight:600;font-size:0.9rem;color:var(--green)}
+.testi-loc{font-size:0.75rem;color:var(--text-light)}
+
+/* NEWSLETTER */
+.newsletter{background:var(--green);text-align:center;padding:5rem 8%}
+.newsletter h2{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--cream);margin-bottom:0.8rem}
+.newsletter p{color:rgba(250,247,240,0.7);margin-bottom:2rem}
+.newsletter-form{display:flex;gap:0;max-width:480px;margin:0 auto;border-radius:40px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+.newsletter-form input{flex:1;padding:14px 20px;border:none;outline:none;font-family:'DM Sans',sans-serif;font-size:0.9rem;background:#fff}
+.newsletter-form button{background:var(--gold);color:var(--green);border:none;padding:14px 24px;font-weight:700;font-size:0.85rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s}
+.newsletter-form button:hover{background:var(--gold-light)}
+.nl-success{display:none;color:var(--gold);font-size:1rem;margin-top:1rem}
+
+/* FOOTER */
+footer{background:#0f2406;color:rgba(250,247,240,0.7);padding:4rem 8% 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .logo{font-size:1.6rem;display:block;margin-bottom:1rem}
+.footer-brand p{font-size:0.85rem;line-height:1.7;max-width:260px}
+.footer-col h5{color:var(--gold);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.2rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:0.6rem}
+.footer-col ul li a{color:rgba(250,247,240,0.65);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+.footer-col ul li a:hover{color:var(--gold)}
+.certs{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1rem}
+.cert{background:rgba(232,168,53,0.15);border:1px solid rgba(232,168,53,0.3);color:var(--gold);padding:4px 12px;border-radius:12px;font-size:0.72rem;font-weight:600}
+.footer-bottom{border-top:1px solid rgba(250,247,240,0.1);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap}
+.footer-bottom p{font-size:0.8rem}
+
+/* TOAST */
+.toast{position:fixed;bottom:30px;right:30px;background:var(--green);color:var(--cream);padding:14px 24px;border-radius:12px;font-size:0.9rem;box-shadow:0 4px 20px rgba(0,0,0,0.2);transform:translateX(200%);transition:transform 0.3s;z-index:1000;border-left:4px solid var(--gold)}
+.toast.show{transform:translateX(0)}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--green);flex-direction:column;padding:1.5rem 5%;gap:1rem}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .hero{grid-template-columns:1fr}
+  .hero-right{border-left:none;border-top:1px solid rgba(232,168,53,0.2)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  section{padding:4rem 5%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="logo">Mycco<span>Herbs</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#products">Hair Care</a></li>
+    <li><a href="#products">Digestive</a></li>
+    <li><a href="#products">Wellness</a></li>
+    <li><a href="#products">Juices</a></li>
+    <li><a href="#products">Skin Care</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:1rem">
+    <button class="cart-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-tag">🌿 100% Natural · Ayurvedic</span>
+    <h1>Ancient Wisdom,<br><em>Modern Wellness</em></h1>
+    <p>Rooted in Ayurveda, crafted for today. Mycco Herbs brings you the purest herbal formulations for hair, skin, digestion, and total wellness.</p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary">Shop Now</a>
+      <a href="#why" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <h3>✦ Top 5 Bestsellers</h3>
+    <div class="bestseller-list">
+      <div class="bs-item">
+        <span class="bs-num">01</span>
+        <div class="bs-info"><h4>Hair Growth Oil</h4><span>₹349</span></div>
+        <button class="bs-add" onclick="addToCart('Hair Growth Oil',349)">+ Add</button>
+      </div>
+      <div class="bs-item">
+        <span class="bs-num">02</span>
+        <div class="bs-info"><h4>Enzyme Syrup</h4><span>₹299</span></div>
+        <button class="bs-add" onclick="addToCart('Enzyme Syrup',299)">+ Add</button>
+      </div>
+      <div class="bs-item">
+        <span class="bs-num">03</span>
+        <div class="bs-info"><h4>Ashwagandha Capsules</h4><span>₹499</span></div>
+        <button class="bs-add" onclick="addToCart('Ashwagandha Capsules',499)">+ Add</button>
+      </div>
+      <div class="bs-item">
+        <span class="bs-num">04</span>
+        <div class="bs-info"><h4>Amla Juice</h4><span>₹249</span></div>
+        <button class="bs-add" onclick="addToCart('Amla Juice',249)">+ Add</button>
+      </div>
+      <div class="bs-item">
+        <span class="bs-num">05</span>
+        <div class="bs-info"><h4>Hair Growth Serum</h4><span>₹449</span></div>
+        <button class="bs-add" onclick="addToCart('Hair Growth Serum',449)">+ Add</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-header">
+    <span class="section-tag">Our Collection</span>
+    <h2 class="section-title">Pure Herbal Products</h2>
+    <p class="section-sub">Carefully sourced ingredients, time-tested formulations, lab-tested purity.</p>
+  </div>
+  <div class="filter-tabs">
+    <button class="tab active" onclick="filterProducts('all',this)">All</button>
+    <button class="tab" onclick="filterProducts('hair',this)">Hair Care</button>
+    <button class="tab" onclick="filterProducts('digestive',this)">Digestive</button>
+    <button class="tab" onclick="filterProducts('wellness',this)">Wellness</button>
+    <button class="tab" onclick="filterProducts('juices',this)">Juices</button>
+    <button class="tab" onclick="filterProducts('skin',this)">Skin Care</button>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="ingredients" id="ingredients">
+  <span class="section-tag">Key Ingredients</span>
+  <h2 class="section-title">Nature's Finest Herbs</h2>
+  <p class="section-sub">Every ingredient is ethically sourced from its native region for maximum potency.</p>
+  <div class="ing-grid">
+    <div class="ing-card">
+      <div class="ing-icon">🌿</div>
+      <h4>Ashwagandha</h4>
+      <p>Adaptogen that reduces stress, boosts energy and builds immunity naturally.</p>
+      <span class="ing-origin">Rajasthan, India</span>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🌱</div>
+      <h4>Bhringraj</h4>
+      <p>The "King of Herbs" for hair — promotes growth and prevents premature greying.</p>
+      <span class="ing-origin">Madhya Pradesh</span>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🫐</div>
+      <h4>Amla</h4>
+      <p>Richest natural source of Vitamin C. Strengthens hair, skin and immunity.</p>
+      <span class="ing-origin">Uttar Pradesh</span>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🪨</div>
+      <h4>Shilajit</h4>
+      <p>Himalayan mineral resin packed with fulvic acid for energy and vitality.</p>
+      <span class="ing-origin">Himalayas</span>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🌳</div>
+      <h4>Neem</h4>
+      <p>Powerful antibacterial and antifungal herb for skin and scalp health.</p>
+      <span class="ing-origin">Tamil Nadu</span>
+    </div>
+    <div class="ing-card">
+      <div class="ing-icon">🍃</div>
+      <h4>Brahmi</h4>
+      <p>Ancient brain tonic that enhances memory, focus and mental clarity.</p>
+      <span class="ing-origin">Kerala, India</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY MYCCO -->
+<section class="why" id="why">
+  <div style="text-align:center">
+    <span class="section-tag">Why Choose Us</span>
+    <h2 class="section-title">The Mycco Promise</h2>
+    <p class="section-sub" style="margin:0 auto">We never compromise on quality, purity or transparency.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🌿</div>
+      <h4>100% Natural</h4>
+      <p>No synthetic additives, no harmful chemicals. Pure herbs as nature intended.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏭</div>
+      <h4>GMP Certified</h4>
+      <p>Manufactured in GMP certified facilities meeting international quality standards.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔬</div>
+      <h4>Lab Tested</h4>
+      <p>Every batch is third-party lab tested for purity, potency and safety.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🚫</div>
+      <h4>No Chemicals</h4>
+      <p>Free from parabens, sulfates, artificial colors and harmful preservatives.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <span class="section-tag">Customer Love</span>
+  <h2 class="section-title">What Our Customers Say</h2>
+  <p class="section-sub">Real results, real people.</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"The Hair Growth Oil is absolutely magical! I've been using it for 3 months and my hair fall reduced by 80%. Highly recommend!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">P</div>
+        <div><div class="testi-name">Priya Sharma</div><div class="testi-loc">Delhi, India</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Enzyme Syrup completely transformed my digestion. No more bloating after meals. Natural and effective — this is my daily essential now."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div><div class="testi-name">Rahul Verma</div><div class="testi-loc">Mumbai, India</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Ashwagandha capsules helped me manage work stress so much better. I sleep well and wake up energized. Pure Ayurveda, pure results!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div><div class="testi-name">Anjali Singh</div><div class="testi-loc">Bangalore, India</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>Join the Wellness Journey</h2>
+  <p>Get exclusive offers, Ayurvedic tips and early access to new products.</p>
+  <div class="newsletter-form">
+    <input type="email" id="nlEmail" placeholder="Enter your email address">
+    <button onclick="subscribeNewsletter()">Subscribe</button>
+  </div>
+  <p class="nl-success" id="nlSuccess">🌿 Thank you! Welcome to the Mycco family.</p>
+</section>
+
+
+<section style="padding:60px 8%;background:#faf7f0">
+<h2 style="margin-bottom:20px">Contact MYCCO HERBS</h2>
+<p><strong>Phone:</strong> 7082071271</p>
+<p><strong>Email:</strong> info@myccoherbs.com</p>
+<p><strong>GST:</strong> 06JVAPS0472L1Z6</p>
+<p><strong>UDYAM:</strong> UDYAM-HR-13-0036893</p>
+<p><strong>Business Name:</strong> MYCCO HERBS</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">Mycco<span style="color:rgba(250,247,240,0.7);font-weight:400">Herbs</span></a>
+      <p>MYCCO HERBS | Premium Ayurvedic & Herbal Wellness Products. Contact: 7082071271 | info@myccoherbs.com</p>
+      <div class="certs">
+        <span class="cert">FSSAI</span>
+        <span class="cert">USDA Organic</span>
+        <span class="cert">GMP</span>
+        <span class="cert">Made in India</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Products</h5>
+      <ul>
+        <li><a href="#products">Hair Care</a></li>
+        <li><a href="#products">Digestive</a></li>
+        <li><a href="#products">Wellness</a></li>
+        <li><a href="#products">Juices</a></li>
+        <li><a href="#products">Skin Care</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Mycco Herbs. All rights reserved.</p>
+    <p>📞 7082071271 | ✉️ info@myccoherbs.com<br>GST: 06JVAPS0472L1Z6<br>UDYAM: UDYAM-HR-13-0036893</p>
+  </div>
+</footer>
+
+<!-- MYCCO CHECKOUT -->
+<section id="checkoutSection" style="padding:60px 8%;background:#fff8ee;border-top:2px solid #e8a835">
+<h2>Checkout</h2>
+<p>Minimum order: ₹549 | Shipping: ₹99</p>
+<div style="display:grid;gap:10px;max-width:500px">
+<input id="custName" placeholder="Full Name" style="padding:12px">
+<input id="custPhone" placeholder="Mobile Number" style="padding:12px">
+<textarea id="custAddress" placeholder="Address" style="padding:12px"></textarea>
+<button onclick="startCheckout()" style="padding:12px;font-weight:bold">Proceed to Checkout</button>
+<button onclick="whatsappOrder()" style="padding:12px">WhatsApp Backup Order</button>
+</div>
+<div id="orderSummary" style="margin-top:15px;font-weight:bold"></div>
+</section>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+
+let products=[];
+async function loadProducts(){
+const res=await fetch('https://xxlzleandzndakrltner.supabase.co/rest/v1/products?select=*&active=eq.true',{
+headers:{
+'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4bHpsZWFuZHpuZGFrcmx0bmVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwMDU3OTQsImV4cCI6MjA5NjU4MTc5NH0.ylHmMLgDOz5KPWZj1Pj9roYgm1exz6zWQnLkFrMvMI4',
+'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4bHpsZWFuZHpuZGFrcmx0bmVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwMDU3OTQsImV4cCI6MjA5NjU4MTc5NH0.ylHmMLgDOz5KPWZj1Pj9roYgm1exz6zWQnLkFrMvMI4'
+}});
+products=await res.json();
+renderProducts();
+}
+function renderProducts(filter='all'){
+const grid=document.getElementById('productsGrid');
+grid.innerHTML=products.map(p=>`<div class="product-card"><div class="product-image"><img src="${p.image_url||''}" style="width:100%;height:100%;object-fit:cover"></div><div class="product-info"><div class="product-name">${p.name}</div><div class="product-price">₹${p.price}</div><button class="add-btn" onclick="addToCart('${"${p.name}"}',${"${p.price}"})">Add to Cart</button></div></div>`).join('');
+}
+loadProducts();
+
+
+
+let cartItems=[];
+const SHIPPING_CHARGE=99;
+const MIN_ORDER=549;
+
+const oldAddToCart = addToCart;
+addToCart = function(name,price){
+ cartItems.push({name,price});
+ oldAddToCart(name,price);
+ updateSummary(); document.getElementById('checkoutSection')?.scrollIntoView({behavior:'smooth'});
+}
+
+function updateSummary(){
+ const subtotal=cartItems.reduce((a,b)=>a+b.price,0);
+ const shipping=subtotal>0?SHIPPING_CHARGE:0;
+ const total=subtotal+shipping;
+ const el=document.getElementById('orderSummary');
+ if(el){el.innerHTML=`Subtotal: ₹${subtotal}<br>Shipping: ₹${shipping}<br>Total: ₹${total}`;}
+}
+
+async function startCheckout(){
+ const subtotal = cartItems.reduce((a,b)=>a+b.price,0);
+ if(subtotal < MIN_ORDER){
+   showToast('⚠️ Minimum order value is ₹549');
+   return;
+ }
+ const name = document.getElementById('custName').value.trim();
+ const phone = document.getElementById('custPhone').value.trim();
+ const address = document.getElementById('custAddress').value.trim();
+ if(!name || !phone || !address){
+   showToast('⚠️ Please fill Name, Phone and Address');
+   return;
+ }
+ const total = subtotal + SHIPPING_CHARGE;
+ const btn = document.querySelector('#checkoutSection button');
+ btn.disabled = true;
+ btn.textContent = 'Processing...';
+ try {
+   const res = await fetch('/.netlify/functions/create-order', {
+     method: 'POST',
+     headers: {'Content-Type':'application/json'},
+     body: JSON.stringify({amount: total, currency: 'INR'})
+   });
+   const order = await res.json();
+   if(!order.id) throw new Error(order.error || 'Order failed');
+   const options = {
+     key: 'rzp_live_SymOkgpO083Qv5',
+     amount: order.amount,
+     currency: order.currency,
+     name: 'Mycco Herbs',
+     description: cartItems.map(i=>i.name).join(', '),
+     order_id: order.id,
+     prefill: { name: name, contact: phone },
+     notes: { address: address },
+     theme: { color: '#1a3d0a' },
+     handler: function(response){
+       btn.textContent = '✅ Order Placed!';
+       btn.style.background = '#2a5c10';
+       document.getElementById('orderSummary').innerHTML =
+         `<div style="color:green;margin-top:10px">✅ Payment Successful!<br>Payment ID: ${response.razorpay_payment_id}<br>Thank you, ${name}! We will contact you at ${phone}.</div>`;
+       cartItems = [];
+       cartCount = 0;
+       document.getElementById('cartCount').textContent = 0;
+     },
+     modal: {
+       ondismiss: function(){
+         btn.disabled = false;
+         btn.textContent = 'Proceed to Checkout';
+       }
+     }
+   };
+   const rzp = new Razorpay(options);
+   rzp.on('payment.failed', function(r){
+     btn.disabled = false;
+     btn.textContent = 'Proceed to Checkout';
+     showToast('❌ Payment failed: ' + r.error.description);
+   });
+   rzp.open();
+ } catch(err){
+   btn.disabled = false;
+   btn.textContent = 'Proceed to Checkout';
+   showToast('❌ Error: ' + err.message);
+ }
+}
+
+function whatsappOrder(){
+ const subtotal=cartItems.reduce((a,b)=>a+b.price,0);
+ const msg=encodeURIComponent(
+    'Order from MYCCO HERBS\nName: '+document.getElementById('custName').value+
+    '\nPhone: '+document.getElementById('custPhone').value+
+    '\nAddress: '+document.getElementById('custAddress').value+
+    '\nOrder Value: ₹'+subtotal
+ );
+ window.open('https://wa.me/917082071271?text='+msg,'_blank');
+}
+
+// Razorpay Key ID configured: rzp_live_SymOkgpO083Qv5
+</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<a href="https://wa.me/917082071271" style="position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:14px 18px;border-radius:40px;text-decoration:none;z-index:9999;font-weight:bold">WhatsApp Order</a>
+
+
+<script>
+const SUPABASE_URL='https://xxlzleandzndakrltner.supabase.co/rest/v1/products?select=*';
+const SUPABASE_KEY='REPLACE_WITH_EXISTING_KEY';
+async function loadDynamicProducts(){
+ try{
+  const r=await fetch(SUPABASE_URL,{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}});
+  const d=await r.json();
+  console.log('Dynamic products',d);
+ }catch(e){console.log(e)}
+}
+loadDynamicProducts();
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'><title>Mycco Admin</title>
+<style>body{font-family:Arial;padding:20px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #ddd;padding:8px}button,input,select{padding:6px;margin:3px}</style></head><body>
+<div id='login'><h2>Mycco Admin Login</h2><input id='u' placeholder='Username'><br><input id='p' type='password' placeholder='Password'><br><button onclick='login()'>Login</button></div>
+<div id='panel' style='display:none'>
+<h2>Orders Admin</h2><button onclick='loadOrders()'>Refresh Orders</button>
+<table><thead><tr><th>Order</th><th>Name</th><th>Phone</th><th>Amount</th><th>Status</th><th>Tracking</th><th>Action</th></tr></thead><tbody id='orders'></tbody></table>
+<h2>Products</h2><button onclick='loadProducts()'>Refresh Products</button><button onclick='addProduct()'>Add Product</button>
+<table><thead><tr><th>Name</th><th>Price</th><th>MRP</th><th>Image URL</th><th>Upload</th><th>Active</th><th>Save</th><th>Delete</th></tr></thead><tbody id='products'></tbody></table>
+</div>
+<script>
+const U='https://xxlzleandzndakrltner.supabase.co/rest/v1';
+const K='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh4bHpsZWFuZHpuZGFrcmx0bmVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwMDU3OTQsImV4cCI6MjA5NjU4MTc5NH0.ylHmMLgDOz5KPWZj1Pj9roYgm1exz6zWQnLkFrMvMI4';
+function login(){if(u.value==='myccoherbs'&&p.value==='Sorabh@8118'){document.getElementById('login').style.display='none';document.getElementById('panel').style.display='block';loadOrders();loadProducts();}else alert('Invalid Login')}
+async function loadOrders(){let r=await fetch(U+'/orders?select=*',{headers:{apikey:K,Authorization:'Bearer '+K}});let d=await r.json();orders.innerHTML='';(d||[]).reverse().forEach(o=>orders.innerHTML+=`<tr><td>${o.order_id||''}</td><td>${o.customer_name||''}</td><td>${o.phone||''}</td><td>₹${o.amount||''}</td><td>${o.order_status||'New'}</td><td><input placeholder='Tracking' value='${o.tracking_number||''}' onchange="updateTracking(${o.id},this.value)"></td><td><select onchange="updateStatus(${o.id},this.value)"><option>New</option><option>Processing</option><option>Shipped</option><option>Delivered</option></select></td></tr>`)}
+async function updateStatus(id,s){await fetch(U+'/orders?id=eq.'+id,{method:'PATCH',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({order_status:s})});alert('Status Updated')}
+async function loadProducts(){let r=await fetch(U+'/products?select=*',{headers:{apikey:K,Authorization:'Bearer '+K}});let d=await r.json();products.innerHTML='';(d||[]).forEach(p=>products.innerHTML+=`<tr>
+<td>${p.name}</td>
+<td><input id='pr_${p.id}' value='${p.price||0}'></td>
+<td><input id='mrp_${p.id}' value='${p.mrp||0}'></td>
+<td><input id='img_${p.id}' value='${p.image_url||''}'></td>
+<td><input type='file' onchange="uploadImage(${p.id},this)"></td>
+<td>${p.active}</td>
+<td><button onclick="saveProduct(${p.id})">Save</button></td></tr>`)}
+
+async function updateTracking(id,v){await fetch(U+'/orders?id=eq.'+id,{method:'PATCH',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({tracking_number:v})});}
+
+async function uploadImage(id,el){
+ const f=el.files[0];
+ if(!f) return;
+ const path=Date.now()+'_'+f.name;
+ let r=await fetch('https://xxlzleandzndakrltner.supabase.co/storage/v1/object/product-images/'+path,{
+ method:'POST',
+ headers:{apikey:K,Authorization:'Bearer '+K,'x-upsert':'true','Content-Type':f.type},
+ body:f
+ });
+ if(!r.ok){alert('Upload failed'); return;}
+ const url='https://xxlzleandzndakrltner.supabase.co/storage/v1/object/public/product-images/'+encodeURIComponent(path);
+ document.getElementById('img_'+id).value=url;
+ alert('Image uploaded. Click Save.');
+}
+
+async function saveProduct(id){
+ await fetch(U+'/products?id=eq.'+id,{method:'PATCH',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},
+ body:JSON.stringify({price:document.getElementById('pr_'+id).value,mrp:document.getElementById('mrp_'+id).value,image_url:document.getElementById('img_'+id).value})});
+ alert('Product Updated');
+}
+</script></body></html>
+<script>
+async function addProduct(){
+ const name=prompt('Product name');
+ if(!name) return;
+ await fetch(U+'/products',{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},
+ body:JSON.stringify({name:name,price:0,mrp:0,image_url:'',active:true})});
+ loadProducts();
+}
+async function deleteProduct(id){
+ if(!confirm('Delete product?')) return;
+ await fetch(U+'/products?id=eq.'+id,{method:'DELETE',headers:{apikey:K,Authorization:'Bearer '+K}});
+ loadProducts();
+}
+</script>
