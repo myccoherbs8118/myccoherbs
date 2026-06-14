@@ -462,6 +462,13 @@ loadProducts();
 
 
 
+
+function addToCart(name,price){
+ const c=document.getElementById('cartCount');
+ if(c){c.textContent=String((parseInt(c.textContent)||0)+1);}
+ showToast && showToast(name+' added to cart');
+}
+
 let cartItems=[];
 const SHIPPING_CHARGE=99;
 const MIN_ORDER=549;
